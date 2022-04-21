@@ -181,6 +181,11 @@ log(5) + pi/sqrt(5)
 ### AQUÍ PRACTICAR DEFINIENDO ALGUNOS OBJETOS *********
 
 
+
+
+#usar las funciones min, max, mean, median, range, 
+
+
 # Definimos 'objetos' (Esto lo veremos más adelante)
 poleras <- c(254,203,182,50)
 meses <- c("Ene", "Feb", "Mar", "Abr")
@@ -203,6 +208,14 @@ log(100,10)==log(10,100)
 
 log(base=10) #error 
 
+
+#Aqui mostrar mas errores
+
+
+
+
+
+
 #objetos en r
 
 numero <- 256
@@ -216,6 +229,9 @@ a <- 5
 b <- a
 a <- 3
 
+#para borrar objetos:
+
+remove(a)
 
 
 #nombre <- objeto
@@ -228,16 +244,17 @@ install.packages("ggplot2")
 
 library(ggplot2)
 
+#Mostrar apartado donde se ven los paquetes instalados
+
+
+
 #Referencias
 
 # R para Ciencia de Datos : Libro en línea, en español.
-# 
+
 # RStudio cheatsheets : “Torpedos”; en la parte inferior de la página hay versiones en español disponibles.
-# 
 # RStudio Primers: Ejercicios interactivos; en inglés.
-# 
 # Hands-on Programming with R : Libro en línea de introducción a la programación en R que no requiere conocimientos previos; en inglés.
-# 
 # Curso de Estadística Computacional : Libro de apoyo para el curso Estadística Computacional dictado por María Teresa Ortiz.
 
 
