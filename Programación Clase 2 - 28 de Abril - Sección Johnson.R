@@ -34,6 +34,11 @@
 #Listas: Es una colección de objetos, donde los objetos pueden diferir en tipo (vector, matriz)
 
 
+# Crear proyecto Clases en la carpeta deseada
+# y adentro crear carpetas Clase 2, Clase 3, Clase 4, Clase 5 con dir.create("nueva_carpeta")
+# y crear script dentro de la carpeta clase 2.
+
+
 #Diapo 5: Vectores
 
 #Secuencia de datos cuyo orden es a lo largo (como un fideo spagetti), todos los elementos deben
