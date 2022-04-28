@@ -101,5 +101,28 @@ rep(c(1,19,20), each=4) #se repite cada 4 veces cada elemento
 
 #ideas?
 
+rep(c('variable', 'hora', 'resultado'), 6)
 
+rep(1:6, each=3)
 
+paste(rep(c('variable', 'hora', 'resultado'), 6), rep(1:6, each=3))
+
+# funciones para vectores de texto
+
+letters
+
+LETTERS
+
+tolower(LETTERS)
+
+toupper(letters)
+
+###funciones genericas
+
+length(LETTERS)
+
+is.vector(LETTERS)
+
+a<-1
+
+is.vector(a)
