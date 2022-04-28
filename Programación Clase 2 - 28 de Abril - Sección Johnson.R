@@ -5,10 +5,6 @@
 #estos.
 
 
-#Pregunta: ¿qué te pareció el entorno de Rstudio? https://www.menti.com/msx2bfp3m3
-
-## **Conversar sobre los resultados**
-
 #Let's Start!!! -----> Clase 2! Tipos y estructura de datos en R
 
 #Hoy veremos tipo de datos, objetos en R, matrices, dataframes, lógica en R
@@ -226,7 +222,11 @@ datadados
 
 class(datadados)
 
+names(datadados) #nombre de las variables o columnas
+
 summary(datadados) #tenemos mezclas de datos
+
+str(datadados)
 
 class(datadados$nombres)
 class(datadados$ndados)
@@ -234,5 +234,292 @@ class(datadados$ndados)
 datadados  #aqui ya empezamos a hablar de observaciones y variables (contexto de datos)
 
 #Cada observación corresponde a una persona (fila)
-#Las variables
+#Las variables que tenemos en este caso es el número de dados (columna 1)
+
+
+#Diapo 12: Ejemplo Data Frame
+
+mtcars
+
+class(mtcars)
+
+#Diapo 14:
+
+#Forma 1: Definiendo a priori los vectores como objetos previamente:
+
+nombre <- c("Andrea","Bastian","Camilo","Daniela")
+grupo_s <- c("AB", "0", "A", "B")
+altura_cm <- c(165, 180, 158, 170)
+
+tabla <- data.frame(nombre,grupo_s,altura_cm)
+tabla
+
+names(tabla)
+
+#Forma 2:
+
+tabla <- data.frame(
+  nombre = c("Andrea","Bastian","Camilo","Daniela"),
+  grupo_s = c("AB", "0", "A", "B"),
+  altura_cm = c(165, 180, 158, 170)
+)
+
+tabla
+
+names(tabla)
+
+#Diapo 17: Seleccion de observaciones
+
+mtcars$mpg
+
+mtcars[, 1]
+
+mtcars[['mpg']]
+
+#Podemos hacer las mismas extracciones que hicimos en las matrices, por fila, columna, posición
+#etc
+
+#Diapo 18: Tibbles :D
+
+#Los tibbles tienen mejoras a los dataframes:
+
+install.packages('tidyverse') #instalamos el paquete
+library(tidyverse) #Cargamos
+
+
+(base_tible<-as_tibble(mtcars)) 
+
+#Diapo 22: Para crear un tibble es lo mismo que para crear dataframes
+
+
+(tabla_tibble<-tibble(nombres, ndados))
+
+
+#Antes de pasar a la diapo 23: RECREO!!! (Hemos visto muchooo!)
+
+
+#De vuelta...!
+
+#Diapo 3: Valores no disponibles (Faltantes, missing values, perdidos, NA, null)
+
+
+#Missing value: Es un dato que por alguna razón NO lo tenemos (ya sea porque no existe,
+#se tipeó erronéamente, se borró, etc)
+
+#Hay toda una teoría sobre imputación de valores perdidos (en caso de que se quiera realizar)
+#y hoy veremos introducción a estos datos.
+
+
+vec_ejemplo <- c(1, NA, 3, NA, 5)
+class(vec_ejemplo)
+
+#La función is.na() nos entrega TRUE si es NA y FALSE si no es NA
+
+is.na(vec_ejemplo)
+
+#¿qué significa entonces la siguiente cantidad?
+
+sum(is.na(vec_ejemplo))
+
+#### R: La cantidad de missing values en el vector ejemplo.
+
+#Podemos crear tibbles, dataframes, etc con NA:
+
+tib_ejemplo <- tibble(
+  nombre = c("Claudio","Javiera","Elias", NA,"Camila"),
+  valor = c(10, NA, 7, NA, 15)
+)
+str(tib_ejemplo)
+
+summary(tib_ejemplo) #Es importante detectar que tenemos valores faltantes antes de trabajar!
+
+#Diapo 24: Podemos omitir los datos faltantes con la función na.omit()
+
+na.omit(tib_ejemplo)
+
+#El problema de esto.....omite TODOS LOS REGISTROS(FILAS) CON ALGÚN NA!!
+### En consecuencia, podemos perder muchos datos :c así que usar con PRUDENCIA!
+
+
+
+#Diapo 25: Podemos omitir los NA en las funciones:
+
+sum(vec_ejemplo) #suma
+mean(vec_ejemplo) #promedio
+median(vec_ejemplo) #mediana
+min(vec_ejemplo) #minimo
+max(vec_ejemplo) #maximo
+range(vec_ejemplo) #rango
+
+
+sum(vec_ejemplo, na.rm=TRUE) #suma
+mean(vec_ejemplo, na.rm=TRUE) #promedio
+median(vec_ejemplo,  na.rm=TRUE) #mediana
+min(vec_ejemplo,  na.rm=TRUE) #minimo
+max(vec_ejemplo,  na.rm=TRUE) #maximo
+range(vec_ejemplo,  na.rm=TRUE) #rango
+
+
+#Diapo 26: Listas
+#Una lista es como.. cuando cuelgas ropa en un tendedero, tienes poleras, camisas, pantalones
+#toallas.... es como tener una secuencia de distintos objetos (podríamos decir que es una colección
+#ordenada de objetos, es un objeto que contiene varios objetos)
+
+vec <- LETTERS[1:5]
+mat <- matrix(1:9,ncol=3)
+lista <- list( "Elemento_1" = vec,
+               "Elemento_2" = mat)
+lista
+
+lista[[1]]
+lista$Elemento_1
+
+lista[[2]]
+lista$Elemento_2
+
+lista[[3]]<-'hola que tal'
+
+lista
+
+names(lista)[3]<-'frase' #Nombre del 3er elemento de la lista
+
+
+lista[[2]]
+
+
+#DESAFÍO: ¿Cómo podemos obtener la tercera fila del segundo elemento de nuestra lista?
+
+lista[[2]][3,2]
+
+lista$Elemento_2[3,2]
+
+#### Diapo 28: OPERADORES LÓGICOS
+
+10>5
+
+"Gato" == "gato"
+
+tolower("Gato")=="gato"
+
+c("a","B","c") %in% letters
+
+3:100<5
+
+# Diapo 29:
+
+tabla <- data.frame(
+  nombre = c("Andrea","Bastian","Camilo","Daniela"),
+  grupo_s = c("AB", "0", "A", "B"),
+  altura_cm = c(165, 180, 158, 170)
+)
+
+#queremos conocer a las personas que miden menos de 170
+
+tabla[tabla$altura_cm < 170, ]
+
+#si queremos concoer a las personas que miden menos de 170 y tienen grupo sanguineo A:
+
+tabla[(tabla$altura_cm < 170)&(tabla$grupo_s=='A'), ]
+
+
+###### Diapo 31: Actividad
+
+
+#1. Cree un vector con números del 0 al 11
+
+secuencia<-0:11
+secuencia<-seq(0,11)
+
+#2. Vea qué tipo de información contiene el vector en su interior (class) y su largo (length).
+
+class(secuencia)
+length(secuencia)
+
+#3. A partir de este vector cree una matriz de tres columnas (matrix).
+
+(matriz<-matrix(secuencia, ncol=3))
+
+#4. Ahora pruebe añadiendo el argumento byrow = TRUE. ¿Qué cambia? DESAFÍO
+
+(matriz<-matrix(secuencia, ncol=3, byrow=TRUE))
+
+#5. Confirme que ha creado correctamente una matriz con la función is.matrix y
+#analice sus dimensiones (dim).
+
+dim(matriz)
+
+is.matrix(matriz)
+
+#6. Tomemos el ejemplo de la base mtcars. Cargue la base y vea las diferentes formas de pedir 
+#los valores de las observaciones para la variable mpg.
+
+mtcars$mpg
+mtcars[,1]
+mtcars[["mpg"]]
+
+#7.  La segunda variable corresponde a cyl, la cantidad de cilindros. Y el segundo tipo de 
+#autos corresponde al modelo Mazda RX4 Wag. Pidamos entonces a R que nos entregue:
+
+#a) El valor de todas las variables para el modelo Mazda RX4 Wag.
+
+mtcars
+
+mtcars[,1]
+
+#Preguntar ideas acá
+
+rownames(mtcars)  #nombre del auto
+
+rownames(mtcars) =='Mazda RX4 Wag'  #indica con TRUE cual es el auto que se llama asi
+
+tolower(rownames(mtcars)) == tolower('Mazda RX4 Wag') ##en minusculas
+
+mtcars[tolower(rownames(mtcars)) == tolower('Mazda RX4 Wag'),]
+
+grepl('mazda', tolower(rownames(mtcars))) #que autos contienen mazda en el nombre
+
+
+mtcars[grepl('mazda', tolower(rownames(mtcars))),] #Extraigo las filas completas de los autos
+#que cumplen esa condición
+
+
+grepl('merc', tolower(rownames(mtcars))) #que autos contienen merc en el nombre
+
+
+
+#b) La cantidad de cilindros para cada modelo de auto.
+
+mtcars[, 2] #No se ve el nombre del auto
+
+data.frame('Nombre'=rownames(mtcars), 'Cilindros'=mtcars[,2])
+
+#c) La cantidad de cilindros para el modelo Mazda RX4.
+
+mtcars[tolower(rownames(mtcars)) == tolower('Mazda RX4 Wag'),2]
+
+
+#8. Veamos la diferencia entre la impresión de mtcars como data frame y como tibble.
+
+mtcars
+as_tibble(mtcars)
+
+
+############################################### CIERRE
+
+
+#Pregunta: ¿qué te ha parecido el lenguaje R? https://www.menti.com/msx2bfp3m3
+
+## **Conversar sobre los resultados**
+
+
+#Referencias
+
+# R para Ciencia de Datos : Libro en línea, en español.
+
+# RStudio cheatsheets : “Torpedos”; en la parte inferior de la página hay versiones en español disponibles.
+# RStudio Primers: Ejercicios interactivos; en inglés.
+# Hands-on Programming with R : Libro en línea de introducción a la programación en R que no requiere conocimientos previos; en inglés.
+# Curso de Estadística Computacional : Libro de apoyo para el curso Estadística Computacional dictado por María Teresa Ortiz.
+
+
 
