@@ -126,3 +126,38 @@ is.vector(LETTERS)
 a<-1
 
 is.vector(a)
+
+### Extraer elementos de los vectores
+
+LETTERS[seq(1, 10, by=2)]
+
+LETTERS[seq(20, 25)]
+
+sample(1:10000, 100) #SELECCIONA ALEATORIAMENTE 100
+
+tail(LETTERS, 5)
+head(LETTERS, 10)
+
+
+# CORCHETES REDONDOS (): CUANDO QUEREMOS APLICAR FUNCIONES
+# CORECHETES CUADRADOS []: CUANOD QUEREMOS EXTRAER DIRECTAMENTE ELEMENTOS DE UN OBJETO
+
+# MATRICES
+
+matrix(1:9, ncol=2)
+
+
+matrix(letters[1:9],ncol=3)
+
+is.vector(matrix(letters[1:9],ncol=3))
+
+is.matrix(1:9)
+
+matriz1<-matrix(1:10, ncol=5)
+
+dim(matriz1) #cantidad filas, cantidad columnas
+
+
+
+
+
