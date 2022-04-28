@@ -1,4 +1,4 @@
-### Programación Clase 11: 21 de Abril / Sección Johnson 
+### Programación Clase 1: 21 de Abril / Sección Johnson 
 
 #Descripción de la clase: En esta clase comenzaremos a introducirnos en el lenguaje de programación R desde lo
 #básico: cómo moverse en Rstudio, cómo crear un script, hasta definir objetos, calcular expresiones matemáticas
