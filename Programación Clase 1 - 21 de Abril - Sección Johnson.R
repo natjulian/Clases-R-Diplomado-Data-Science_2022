@@ -66,6 +66,8 @@
   
   # Link: https://www.menti.com/msx2bfp3m3
 
+  # Resultados encuesta: La mayoría había escuchado sobre este lenguaje de programación, y un cuarto aprox lo ha usado
+
   # R es un lenguaje de programación y entorno, que nace muy focalizado al análisis estadístico.
   # RStudio es un entorno más amigable donde podemos usar R 
 
