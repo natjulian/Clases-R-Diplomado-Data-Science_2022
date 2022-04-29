@@ -233,5 +233,77 @@ tabla [['nombre']] #<- esta es la menos usual, al menos en dataframes.
 
 ### TIBBLES
 
+install.packages('tidyverse') #instalar
+library(tidyverse) #cargo al environment (sesion de trabajo)
+
+installed.packages()
+
+base_tibble<-as_tibble(mtcars)
+
+rownames(mtcars) #extraje los modelos
+
+mtcarsarreglada<-data.frame(rownames(mtcars), base_tibble)
+
+colnames(mtcarsarreglada)[1]<-'modelo'
+
+head(mtcarsarreglada)
+
+(mtcarsarreglada_tibble<-as_tibble(mtcarsarreglada))
+
+mtcarsarreglada_tibble[mtcarsarreglada_tibble$modelo=='Fiat 128',] #filtramos autos con modelo =fiat 128
+
+mtcarsarreglada_tibble[mtcarsarreglada_tibble$cyl>5, ]
 
 
+# Valores faltantes
+
+# NA en R
+
+vectornulo<-c(1,2,10, NA)
+
+class(vectornulo)
+
+mean(vectornulo, na.rm=TRUE)
+
+tib_ejemplo <- tibble(
+  nombre = c("Claudio","Javiera","Elias", NA,"Camila"),
+  valor = c(10, NA, 7, NA, 15)
+)
+str(tib_ejemplo)
+
+na.omit(tib_ejemplo) #ojo con omitir! porque podemos reducir mucho la base!!
+
+tib_ejemplo[is.na(tib_ejemplo$nombre)==FALSE,] #me quedo con los datos siempre y cuando este el nombre
+
+
+
+tib_ejemplo$nombre[tib_ejemplo$nombre=='Claudio'] <- NA
+
+tib_ejemplo
+
+summary(tib_ejemplo)
+
+
+## LISTAS
+
+
+vec <- LETTERS[1:5]
+mat <- matrix(1:9,ncol=3)
+
+list<-list( 'letras'=vec, 'matriz'=mat)
+
+list
+
+list$letras
+
+list$matriz
+
+list[[1]]
+
+list[[2]][3, ]
+
+list[[3]]<-3
+
+names(list)[3]<-'numero'
+
+list
