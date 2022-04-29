@@ -307,3 +307,8 @@ list[[3]]<-3
 names(list)[3]<-'numero'
 
 list
+
+c(1,2,3)==2
+
+
+c("a","B","c") %in% letters
