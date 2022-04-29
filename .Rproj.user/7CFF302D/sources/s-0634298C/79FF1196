@@ -3,7 +3,7 @@
     "path": "~/GitHub/Clases-R-Diplomado-Data-Science_2022/Clase 2/Script Clase 2.R",
     "project_path": "Clase 2/Script Clase 2.R",
     "type": "r_source",
-    "hash": "2142235378",
+    "hash": "890109945",
     "contents": "",
     "dirty": false,
     "created": 1651186051417.0,
@@ -13,15 +13,15 @@
         "tempName": "Untitled1",
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "157,47",
-        "scrollLine": "145"
+        "cursorPosition": "183,17",
+        "scrollLine": "171"
     },
     "folds": "",
-    "lastKnownWriteTime": 1651190346,
+    "lastKnownWriteTime": 1651190892,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1651190346639,
+    "last_content_update": 1651190892692,
     "read_only": false,
     "read_only_alternatives": []
 }

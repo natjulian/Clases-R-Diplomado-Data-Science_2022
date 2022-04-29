@@ -158,6 +158,33 @@ matriz1<-matrix(1:10, ncol=5)
 dim(matriz1) #cantidad filas, cantidad columnas
 
 
+matrix(letters[1:9],ncol=3, byrow=TRUE) #por fila
+
+
+colnames(matriz1) <-c('col 1', 'col 2', 'col 3', 'col 4', 'col 5')
+#rownames()
+
+
+nombres<-c('Ignacio', 'Gabriela', 'Maite', 'Giselle')
+
+ndados<-c(3, 0, 1, 6)
+
+(Matriz<-cbind(nombres, ndados))
+
+Matriz[1 , 1] #elemento primera fila primera columna
+
+Matriz[, 1] #primera columna
+
+Matriz[4, ] #Cuarta fila
+
+Matriz[c(1,3), ] #fila 1 y 3
+
+Matriz[, 1:2] #primera y segunda columna
+
+Matriz[c(1,3), 1]
+
+
+
 
 
 
