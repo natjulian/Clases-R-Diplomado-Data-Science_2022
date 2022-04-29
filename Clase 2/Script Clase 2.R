@@ -183,8 +183,43 @@ Matriz[, 1:2] #primera y segunda columna
 
 Matriz[c(1,3), 1]
 
+# Dataframe
+
+mtcars
+
+class(mtcars)
+
+DF_1<-data.frame(nombres, ndados)
+
+class(DF_1$ndados)
+class(DF_1$nombres)
+
+str(DF_1)
+
+summary(DF_1)
 
 
+#ejemplo
+
+tabla <- data.frame(
+  nombre = c("Andrea","Bastian","Camilo","Daniela"),
+  grupo_s = c("AB", "0", "A", "B"),
+  altura_cm = c(165, 180, 158, 170)
+)
+
+names(tabla)
+
+
+tabla[1, 2]
+
+
+vect1<-c(2, 3, 4)
+vect2<-c(10, 3, 7)
+
+rbind(vect1, vect2)
+
+
+tabla[5, ]<-c(2, 3, 4)
 
 
 
