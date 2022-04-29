@@ -1,4 +1,4 @@
-# Script Clase 2
+# Script Clase 2 - 28 de Abril, sección Johnson
 
 vector1<-c(2,4,5)
 
@@ -60,17 +60,17 @@ suspenso<-c(1, 'dos', 3) # no se aceptan mezclas
 
 class(suspenso)
 
-vectorlogic<-c(TRUE, FALSE, FALSE, TRUE)
+vectorlogic<-c(TRUE, FALSE, FALSE, TRUE) #vector de valores logicos
 
-as.numeric(vectorlogic)
+as.numeric(vectorlogic) #TRUE es 1, y FALSE es 0, en R (binario)
 
 sum(vectorlogic)
 
-vector5[vector5>0]
+vector5[vector5>0] #extraigo elementos con determinada condicion (que sean mayores a cero)
 
 # Funciones para generar vectores
 
-1:10
+1:10 #secuencia del 1 al 10 simple
 
 -100:100
 
@@ -78,7 +78,7 @@ vector5[vector5>0]
 
 seq(-0.5, 3, 0.05) #by: salto entre los numeros
 
-seq(-3, 7, length.out=10) 
+seq(-3, 7, length.out=10)  #vector de largo 10
 
 ?seq
 
@@ -91,7 +91,7 @@ rep(c(2,10), 5) #se repite 5 veces el vector
 rep(c(1,19,20), each=4) #se repite cada 4 veces cada elemento
 
 
-## DESAFIO!!
+########################### DESAFIO!!
 
 # supongamos que queremos hacer un vector que diga:
 
@@ -105,17 +105,17 @@ rep(c('variable', 'hora', 'resultado'), 6)
 
 rep(1:6, each=3)
 
-paste(rep(c('variable', 'hora', 'resultado'), 6), rep(1:6, each=3))
+paste(rep(c('variable', 'hora', 'resultado'), 6), rep(1:6, each=3)) #Lo hicimos!! Síi!
 
 # funciones para vectores de texto
 
-letters
+letters  #vector de letras minusculas
 
-LETTERS
+LETTERS #vector de letras en mayuscula
 
-tolower(LETTERS)
+tolower(LETTERS)  #tolower: transforma a minúscula las letras
 
-toupper(letters)
+toupper(letters)  #toupper: transforma a mayúscula las letras
 
 ###funciones genericas
 
@@ -123,20 +123,20 @@ length(LETTERS)
 
 is.vector(LETTERS)
 
-a<-1
+a<-1   #Si defino un numero, este es un vector?
 
-is.vector(a)
+is.vector(a) #Para R sí! :D vector de largo 1
 
 ### Extraer elementos de los vectores
 
-LETTERS[seq(1, 10, by=2)]
+LETTERS[seq(1, 10, by=2)]  #Extrae elementos del 1 al 10 con saltos de 2
 
 LETTERS[seq(20, 25)]
 
 sample(1:10000, 100) #SELECCIONA ALEATORIAMENTE 100
 
-tail(LETTERS, 5)
-head(LETTERS, 10)
+tail(LETTERS, 5)  #printea los ultimos 5 elementos del vector LETTERS
+head(LETTERS, 10) #printea los primeros 10 elementos del vector LETTERS
 
 
 # CORCHETES REDONDOS (): CUANDO QUEREMOS APLICAR FUNCIONES
@@ -151,14 +151,14 @@ matrix(letters[1:9],ncol=3)
 
 is.vector(matrix(letters[1:9],ncol=3))
 
-is.matrix(1:9)
+is.matrix(1:9) #Pregunta si es una matriz
 
 matriz1<-matrix(1:10, ncol=5)
 
 dim(matriz1) #cantidad filas, cantidad columnas
 
 
-matrix(letters[1:9],ncol=3, byrow=TRUE) #por fila
+matrix(letters[1:9],ncol=3, byrow=TRUE) # byrow=TRUE: llena por fila
 
 
 colnames(matriz1) <-c('col 1', 'col 2', 'col 3', 'col 4', 'col 5')
@@ -183,13 +183,14 @@ Matriz[, 1:2] #primera y segunda columna
 
 Matriz[c(1,3), 1]
 
+
 # Dataframe
 
 mtcars
 
 class(mtcars)
 
-DF_1<-data.frame(nombres, ndados)
+DF_1<-data.frame(nombres, ndados) #creamos dataframe pero con los vectores previamente definidos
 
 class(DF_1$ndados)
 class(DF_1$nombres)
@@ -199,9 +200,9 @@ str(DF_1)
 summary(DF_1)
 
 
-#ejemplo
+#ejemplo: tambien podemos indicar adentro del dataframe los vectores!
 
-tabla <- data.frame(
+tabla <- data.frame(   
   nombre = c("Andrea","Bastian","Camilo","Daniela"),
   grupo_s = c("AB", "0", "A", "B"),
   altura_cm = c(165, 180, 158, 170)
@@ -210,16 +211,27 @@ tabla <- data.frame(
 names(tabla)
 
 
-tabla[1, 2]
+tabla[1, 2] #extrae elemento de la fila 1, 2da columna
 
 
 vect1<-c(2, 3, 4)
 vect2<-c(10, 3, 7)
 
-rbind(vect1, vect2)
+rbind(vect1, vect2) #lo agrega por fila :D
 
 
-tabla[5, ]<-c(2, 3, 4)
+tabla[5, ]<-c(2, 3, 4) #Concatena debajo de la dataframe estos objetos
+
+#ahora, hay funciones mejores para hacer esto, o tambien se podria usar un for(), ver mas adelante :)
+
+#Se pueden extraer variables/columnas de las siguientes formas:
+
+tabla$nombre
+tabla[,1]
+tabla [['nombre']] #<- esta es la menos usual, al menos en dataframes.
+
+
+### TIBBLES
 
 
 
