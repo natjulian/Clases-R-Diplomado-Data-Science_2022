@@ -512,9 +512,8 @@ as_tibble(mtcars)
 ############################################### CIERRE
 
 
-#Pregunta: ¿qué te ha parecido el lenguaje R? https://www.menti.com/msx2bfp3m3
+#Pregunta: Algún comentario para el equipo?? Favor escribir aquí!:  https://www.menti.com/msx2bfp3m3
 
-## **Conversar sobre los resultados**
 
 
 #Referencias
