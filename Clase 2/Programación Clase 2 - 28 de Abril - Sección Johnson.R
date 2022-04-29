@@ -469,23 +469,29 @@ mtcars[["mpg"]]
 
 mtcars
 
-mtcars[,1]
+mtcars[2,] #Pero esto es muy manual.....................
 
-#Preguntar ideas acá
+#Hagamoslo de manera más inteligente!! Ver el script de la clase!! Hicimos lo mismo :)
+
 
 rownames(mtcars)  #nombre del auto
 
 rownames(mtcars) =='Mazda RX4 Wag'  #indica con TRUE cual es el auto que se llama asi
 
-tolower(rownames(mtcars)) == tolower('Mazda RX4 Wag') ##en minusculas
+tolower(rownames(mtcars)) == tolower('Mazda RX4 Wag') ##en minusculas puede ser mas facil filtrarlo
 
-mtcars[tolower(rownames(mtcars)) == tolower('Mazda RX4 Wag'),]
 
-grepl('mazda', tolower(rownames(mtcars))) #que autos contienen mazda en el nombre
+mtcars[tolower(rownames(mtcars)) == tolower('Mazda RX4 Wag'),]  #Mucho más eficiente! :D
+
+
+## Más ideas:
+
+
+grepl('mazda', tolower(rownames(mtcars))) #se filtra qué autos contienen mazda en el nombre
 
 
 mtcars[grepl('mazda', tolower(rownames(mtcars))),] #Extraigo las filas completas de los autos
-#que cumplen esa condición
+#que cumplen esa condición (de que tengan mazda en el nombre)
 
 
 grepl('merc', tolower(rownames(mtcars))) #que autos contienen merc en el nombre
@@ -496,7 +502,8 @@ grepl('merc', tolower(rownames(mtcars))) #que autos contienen merc en el nombre
 
 mtcars[, 2] #No se ve el nombre del auto
 
-data.frame('Nombre'=rownames(mtcars), 'Cilindros'=mtcars[,2])
+data.frame('Nombre'=rownames(mtcars), 'Cilindros'=mtcars[,2]) #Le añado el nombre del auto!
+
 
 #c) La cantidad de cilindros para el modelo Mazda RX4.
 
