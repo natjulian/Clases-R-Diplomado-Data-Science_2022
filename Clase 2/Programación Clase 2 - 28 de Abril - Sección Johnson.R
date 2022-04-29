@@ -4,6 +4,12 @@
 #a hablar más formalmente de los objetos que solemos trabajar en R y las diferencias entre
 #estos.
 
+# Nuestro equipo:
+
+# - Natalie Julian (najulian@mat.uc.cl)
+# - Maite Vergara (Maite.vergara@uc.cl) 
+# - Esteban Rucan (errucan@uc.cl)
+
 
 #Let's Start!!! -----> Clase 2! Tipos y estructura de datos en R
 
@@ -77,6 +83,10 @@ class(suspenso)
 
 #Gana character, por qué?
 
+## Bueno... La verdad es que lo más factible es que todos los elementos sean character
+### porque 'dos' no puede transformarse a numero (R no lo entiende, nosotros sí!)
+### por eso.. R le asignará a todos los elementos el formato character.
+
 
 #Los vectores lógicos se ven más o menos así:
 
@@ -88,6 +98,7 @@ as.numeric(vectorlogic)
 sum(vectorlogic)
 
 #Conclusión: TRUE equivale a 1, y false equivale a 0 ! (éxito, fallo)
+
 
 #Diapo 6: Funciones para generar vectores
 
@@ -118,6 +129,8 @@ rep(-1:4, 5)
 
 rep(c(1,2,3,4), 1, each=2)
 
+
+
 #Supongamos que queremos un vector que diga:
 # variable 1, hora 1, resultado 1, variable 2, hora 2, resultado 2, y así hasta llegar a resultado 6
 
@@ -135,6 +148,8 @@ rep(1:6,1, each=3)
 # Paso 3: Los unimos con paste:
 
 paste(rep(c('variable', 'hora', 'resultado'), times=6), rep(1:6,1, each=3))
+
+#Recordemos la función paste (la vimos en la clase 1!!!) concatena vectores, palabras, etc
 
 
 
@@ -370,6 +385,12 @@ range(vec_ejemplo,  na.rm=TRUE) #rango
 #toallas.... es como tener una secuencia de distintos objetos (podríamos decir que es una colección
 #ordenada de objetos, es un objeto que contiene varios objetos)
 
+#sirven caleta cuando por ejemplo, tenemos muchos excel en una carpeta y luego los podemos importar
+#simultáneamente, estas bases de datos se guardarán en una lista y cada elemento de la lista es una
+#base de datos!! (es super eficiente)
+
+
+
 vec <- LETTERS[1:5]
 mat <- matrix(1:9,ncol=3)
 lista <- list( "Elemento_1" = vec,
@@ -516,7 +537,7 @@ mtcars
 as_tibble(mtcars)
 
 
-############################################### CIERRE
+############################################### CIERRE  DE LA CLASE (TERMINAMOS A LA HORA!! :D)
 
 
 #Pregunta: Algún comentario para el equipo?? Favor escribir aquí!:  https://www.menti.com/msx2bfp3m3
