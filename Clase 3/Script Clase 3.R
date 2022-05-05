@@ -47,4 +47,29 @@ mtcars.arreglada$nombre %in% c('Mazda RX4 Wag','Volvo 142E')
 
 mtcars.arreglada[mtcars.arreglada$nombre %in% c('Mazda RX4 Wag','Volvo 142E'),]
 
+## como podemos filtrar modelos de auto que contengan por ejemplo toyota
+
+grepl('toyota', mtcars.arreglada$nombre)
+
+
+grepl('toyota', tolower(mtcars.arreglada$nombre))
+
+mtcars.arreglada[grepl('toyota', tolower(mtcars.arreglada$nombre)), ]
+
+#stringr <- trabajar con strings
+
+
+mtcars.arreglada[1,] #extraigo el registro 1 completo
+
+mtcars.arreglada[,2] #extraigo la columna 2 completa
+
+
+#toyota , Toyota, TOyota, TOYOTA (caso feo :C pero lo resolvemos con tolower)
+
+
+vector_na<-
+
+
+
+
 
