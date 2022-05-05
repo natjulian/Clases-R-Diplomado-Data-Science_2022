@@ -1,8 +1,9 @@
 ### Programación Clase 3: 5 de Mayo / Sección Johnson 
 
-#Descripción de la clase: En esta clase partiremos respondiendo dudas de la tarea de la clase pasada
-#y luego patiremos con tidyverse, dplyr y otros paquetes y funciones que nos servirán A DIARIO en
-#nuestra pega como analistas o científicos de datos.
+#Descripción de la clase: En esta clase partiremos respondiendo dudas de la actividad de la clase pasada
+#y luego patiremos importando bases de datos, y usaremos tidyverse, dplyr y otros paquetes 
+#y funciones que nos servirán A DIARIO en
+#nuestra pega como analistas o científicos de datos :)
 
 
 # Nuestro equipo:
@@ -10,6 +11,7 @@
 # - Natalie Julian (najulian@mat.uc.cl)
 # - Maite Vergara (Maite.vergara@uc.cl) 
 # - Esteban Rucan (errucan@uc.cl)
+
 
 #Como ya creamos nuestro proyecto de las clases de R, abriremos nuestro proyecto y
 #crearemos nuestra carpeta de la clase 3 con
