@@ -104,3 +104,7 @@ data_texto<-data.frame(tolower(vector_nombres), tolower(vector_letras))
 1:10 ==5
 
 
+### IMPORTAR BASES DE DATOS 
+
+
+

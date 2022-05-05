@@ -67,9 +67,44 @@ mtcars.arreglada[,2] #extraigo la columna 2 completa
 #toyota , Toyota, TOyota, TOYOTA (caso feo :C pero lo resolvemos con tolower)
 
 
-vector_na<-
+vector_na<-c(10, 20, NA, 50, -1, -10)
 
 
+# opcion 1
+
+mean(vector_na, na.rm=TRUE)
+
+mean(vector_na) #error
+
+
+vector_na<-c(10, 20, NA, 50, -1, -10)
+vector_na2<-c(4, 10, 20, 60, NA, 20)
+
+data<-data.frame(vector_na, vector_na2)
+
+mean(data$vector_na2, na.rm=TRUE)
+
+summary(data)
+
+
+vector_nombres<-c('Natalie', 'Pablo', 'Giselle', 'MAite')
+vector_letras<-c('A', 'b', 'C', 'F')
+
+
+data_texto<-data.frame(vector_nombres, vector_letras)
+
+tolower(data_texto) ###### BUSCAR FUNCION PARA HACER MINUSCULA TODA LA BASE: BUSCARLO!!!
+
+
+data_texto<-data.frame(tolower(vector_nombres), tolower(vector_letras))
+
+
+1:10  >=5
+
+1:10 ==5
+
+
+### IMPORTAR BASES DE DATOS 
 
 
 
