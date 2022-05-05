@@ -251,6 +251,26 @@ robos<-openxlsx::read.xlsx("C:/Users/Naty/Downloads/robos.xlsx", fillMergedCells
 
 #Ahí sipo :)
 
+#### Ejemplo 3:
+
+
+# en la base ocupacion hay muchas hojas, podemos importarlas todas simultáneamente:
+
+install.packages('rio')
+
+library(rio)
+
+data_list <- import_list("C:/Users/Naty/Downloads/ocupacion.xlsx")
+
+data_list  #Lista de bases de datos :) ¿simple no?
+
+#y si queremos una región:
+
+data_list$Antofagasta
+
+#o también
+
+data_list[['Antofagasta']]
 
 
 #Diapo 14: Tidyverse formalmente:
@@ -427,3 +447,5 @@ ggplot(data=viviendasRM, aes(x=comuna))+
 #Cheatsheet Transformación de Datos con dplyr, Traducido por Frans van Dunné.
 
 #Cheatsheet ggplot2, Traducido por Diego Kozlowski, previamente traducido por Carlos Ortega, Santiago Mota y Carolina Mengoni Goñalons.
+
+
