@@ -106,5 +106,22 @@ data_texto<-data.frame(tolower(vector_nombres), tolower(vector_letras))
 
 ### IMPORTAR BASES DE DATOS 
 
+### base 1
+
+library(readxl)
+empresas <- read_excel("C:/Users/Naty/Downloads/202010_PUB_TRAM5_ACT.xlsx", 
+                       sheet = "Datos", na = "*", skip = 4)
+View(empresas)
+
+names(empresas)
+
+empresas$`Número de trabajadores dependientes de género masculino informados` #nombres feos :c
+
+install.packages('janitor') #instalar el paquete janitor
+
+library(janitor)
+
+
+
 
 
