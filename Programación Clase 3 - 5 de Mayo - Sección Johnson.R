@@ -433,9 +433,9 @@ ggplot(data=viviendasRM, aes(x=comuna))+
 
 ########## FIN! MUCHAS GRACIAS POR SU ATENCION :)
 
-#algún comentario o sugerencia para el equipo? Please déjalo aquí!! :D
+#algún comentario o sugerencia para el equipo? Please déjalo aquí: https://www.menti.com/msx2bfp3m3
 
-### https://www.menti.com/msx2bfp3m3
+
 
 
 #Referencias
