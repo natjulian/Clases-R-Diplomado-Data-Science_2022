@@ -274,3 +274,20 @@ viviendasRM%>%filter(total_superficie_m2==100)%>%
   select(total_superficie_m2, corredor, valor_uf)%>%
   summarise(mean(valor_uf), min(valor_uf), median(valor_uf), max(valor_uf))
 
+
+
+#### GGPLOT2
+
+ggplot(data=viviendasRM, aes(x=n_habitaciones, y=valor_uf))+
+  geom_point()+
+  xlab('Número de habitaciones')+
+  ylab('Valor en UF (caras)')+
+  scale_x_continuous(breaks=1:max(viviendasRM$n_habitaciones, na.rm=TRUE))+
+  theme_minimal()
+
+
+ggplot(data=viviendasRM, aes(x=valor_uf))+
+  geom_histogram(bins=5)+
+  xlab('Valor UF')+
+  ylab('Frecuencia absoluta')+
+  theme_linedraw()
