@@ -139,6 +139,52 @@ library(openxlsx)
 
 robos<-openxlsx::read.xlsx("C:/Users/Naty/Downloads/robos.xlsx", 
                            fillMergedCells=TRUE, na.strings = 'Sin Información')
-
+summary(robos)
 
 ?openxlsx::read.xlsx
+
+
+## base 3.)
+
+install.packages('rio')
+
+library(rio)
+
+
+data_list<-import_list("C:/Users/Naty/Downloads/ocupacion.xlsx")
+
+data_list$Antofagasta
+
+data_list$Aysén
+
+clean_names(data_list) #no funciona T_T todo se derrumbó :'(
+
+
+data.frame('Tarapacá', data_list$Tarapacá) #se podria hacer un for y recorrer todos los elemtnso de la lista :)
+
+#### TIDYVERSE
+
+install.packages('tidyverse')
+
+library(tidyverse)
+
+funcion3(funcion2(clean_names(empresas)))
+
+empresas %>% 
+  clean_names() %>%
+  filter(ano_comercial==2019)
+
+
+empresas_nuevo%>%
+  clean_names()%>%
+  filter(ano_comercial==2019)%>%
+  summarize(mean(ano_comercial), 
+            min(ano_comercial), 
+            max(ano_comercial), 
+            median(ano_comercial))
+
+
+empresas%>%
+  clean_names()%>%
+  select(actividad_economica)%>%
+  slice(1:10)
