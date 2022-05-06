@@ -188,3 +188,89 @@ empresas%>%
   clean_names()%>%
   select(actividad_economica)%>%
   slice(1:10)
+
+empresas %>%
+  clean_names()%>%
+  filter(tramo_segun_ventas_5_tramos=='Micro')%>%
+  summarise(mean(numero_de_empresas))
+
+
+empresas %>%
+  clean_names()%>%
+  group_by(tramo_segun_ventas_5_tramos)%>%
+  summarise(mean(numero_de_empresas), mean(numero_de_trabajadores_dependientes_informados))%>%
+  arrange(desc(tramo_segun_ventas_5_tramos))
+
+empresas %>%
+  clean_names()%>%
+  mutate(venta_clp=ventas_anuales_en_uf*32227)%>%
+  select(venta_clp)
+
+options(scipen=999) ########## BUSCAR COMO CAMBIAR NOTACION CIENTIFICA tarea para mi
+
+empresas2<-empresas %>%
+  clean_names()%>%
+  mutate(venta_clp=ventas_anuales_en_uf*32227)%>%
+  select(venta_clp)
+
+empresas3<-empresas %>%
+  clean_names()%>%
+  mutate(venta_clp=ventas_anuales_en_uf*32227)
+
+
+############################# actividad
+
+#1. 
+
+library(readxl)
+viviendasRM <- read_excel("C:/Users/Naty/Downloads/viviendasRM.xlsx")
+View(viviendasRM)
+
+
+#2. 
+
+
+viviendasRM
+
+viviendasRM<-viviendasRM %>% clean_names()
+
+names(viviendasRM)
+
+
+#3.
+
+#a)
+
+viviendasRM %>% slice(4)
+
+#b) 
+
+viviendasRM %>% slice(8) %>% select(n_banos)
+
+#c)
+
+viviendasRM %>% slice(14) %>% select(n_estacionamientos)
+
+
+viviendasRM$n_estacionamientos[viviendasRM$n_estacionamientos=='No']<-0
+
+
+viviendasRM %>% slice(14) %>% select(n_estacionamientos)
+
+
+viviendasRM$n_estacionamientos<-as.numeric(viviendasRM$n_estacionamientos)
+
+
+viviendasRM %>% slice(14) %>% select(n_estacionamientos)
+
+
+#d) 
+
+viviendasRM %>% slice(5:10) %>% select(total_superficie_m2, valor_uf)
+
+#e)
+
+viviendasRM%>%filter(total_superficie_m2==100)%>%
+  select(total_superficie_m2, corredor, valor_uf)%>%
+  summarise(mean(valor_uf), min(valor_uf), median(valor_uf), max(valor_uf))
+
