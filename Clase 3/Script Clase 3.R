@@ -115,13 +115,30 @@ View(empresas)
 
 names(empresas)
 
+nombres_originales<-names(empresas)
+
+
 empresas$`Número de trabajadores dependientes de género masculino informados` #nombres feos :c
 
 install.packages('janitor') #instalar el paquete janitor
 
 library(janitor)
 
+empresas<-clean_names(empresas)
+
+View(empresas)
+
+empresas$numero_de_trabajadores_dependientes_informados
+
+## base 2.) 
+
+install.packages('openxlsx')
+
+library(openxlsx)
+?openxlsx::read.xlsx
+
+robos<-openxlsx::read.xlsx("C:/Users/Naty/Downloads/robos.xlsx", 
+                           fillMergedCells=TRUE, na.strings = 'Sin Información')
 
 
-
-
+?openxlsx::read.xlsx
