@@ -93,10 +93,19 @@ vector_letras<-c('A', 'b', 'C', 'F')
 
 data_texto<-data.frame(vector_nombres, vector_letras)
 
-tolower(data_texto) ###### BUSCAR FUNCION PARA HACER MINUSCULA TODA LA BASE: BUSCARLO!!!
+
+tolower(data_texto) 
+
+###### BUSCAR FUNCION PARA HACER MINUSCULA TODA LA BASE: BUSCARLO!!! Resuelto:
+
+apply(data_texto,2, tolower)
+
+
+######## FIN DUDAS :D
 
 
 data_texto<-data.frame(tolower(vector_nombres), tolower(vector_letras))
+
 
 
 1:10  >=5
@@ -203,10 +212,20 @@ empresas %>%
 
 empresas %>%
   clean_names()%>%
-  mutate(venta_clp=ventas_anuales_en_uf*32227)%>%
+  mutate(venta_clp=ventas_anuales_en_uf*32227/1000)%>%
   select(venta_clp)
 
-options(scipen=999) ########## BUSCAR COMO CAMBIAR NOTACION CIENTIFICA tarea para mi
+
+ ########## BUSCAR COMO CAMBIAR NOTACION CIENTIFICA tarea para mi (resuelto)
+
+empresas %>%
+  clean_names()%>%
+  mutate(venta_clp=format(ventas_anuales_en_uf*32227, cientific=FALSE))%>%
+  select(venta_clp)
+
+
+####################### DUDA RESUELTA :) aunque no es tan recomendable usar numeros con tantos digitos.
+
 
 empresas2<-empresas %>%
   clean_names()%>%
