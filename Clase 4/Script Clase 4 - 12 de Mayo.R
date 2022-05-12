@@ -55,4 +55,13 @@ viviendasRM%>%
   select(n_estacionamientos)%>%
   summarise(mean(n_estacionamientos, na.rm=TRUE), min(n_estacionamientos, na.rm = TRUE))
 
+##### GRAFICOS
+
+##a) qué tipo de gráfico poodemos usar para el n_estacionamientos: graficos barras
+
+ggplot(data=viviendasRM, aes(x=n_estacionamientos))+
+  geom_bar()
+
+
+
 
