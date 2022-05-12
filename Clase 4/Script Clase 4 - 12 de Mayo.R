@@ -128,3 +128,6 @@ viviendasRM<- viviendasRM%>%
                               TRUE ~ 'Otro caso'))
 
 
+viviendasRM%>%
+  group_by(comuna, cat_banios)%>%
+  count()
