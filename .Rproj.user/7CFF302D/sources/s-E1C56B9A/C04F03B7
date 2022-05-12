@@ -1,24 +1,26 @@
 {
-    "id": "E51FB01A",
-    "path": "C:/Users/Naty/Desktop/Curso de R Diplomado 2022/Clase 3/Clase_3_22.Rmd",
+    "id": "C04F03B7",
+    "path": "C:/Users/Naty/Desktop/Curso de R Diplomado 2022/Clase 4/Clase_4_22.Rmd",
     "project_path": null,
     "type": "r_markdown",
     "hash": "0",
     "contents": "",
     "dirty": false,
-    "created": 1651792899716.0,
+    "created": 1652380748431.0,
     "source_on_save": false,
     "relative_order": 2,
     "properties": {
         "source_window_id": "",
-        "Source": "Source"
+        "Source": "Source",
+        "cursorPosition": "617,0",
+        "scrollLine": "612"
     },
     "folds": "",
-    "lastKnownWriteTime": 1651788439,
+    "lastKnownWriteTime": 1652380773,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1651788439,
+    "last_content_update": 1652380773984,
     "read_only": false,
     "read_only_alternatives": []
 }
