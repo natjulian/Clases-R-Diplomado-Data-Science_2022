@@ -109,7 +109,22 @@ ggplot(data=viviendasRM%>%
   labs(subtitle = 'Fuente: Google')
 
 
+viviendasRM%>% filter(comuna == 'San Joaquín'| comuna=='Maipú') %>%
+  group_by(n_estacionamientos)%>% summarise(n=n()) %>%
+  arrange(n)
+
+viviendasRM%>%
+  group_by(comuna)%>%
+  summarise(prom_sup=mean(total_superficie_m2, na.rm=TRUE),
+            max_estacionamiento=max(n_estacionamientos, na.rm = TRUE))%>%
+  arrange(max_estacionamiento)%>%
+  slice(1:5)
 
 
+viviendasRM<- viviendasRM%>%
+  mutate(cat_banios=case_when(n_banos==0 ~ 'Sin banio',
+                              n_banos>0 & n_banos<3 ~ 'Entre 1 y 2 banios',
+                              n_banos>=3 & n_banos<7 ~ 'Entre 3 y 6 banios',
+                              TRUE ~ 'Otro caso'))
 
 
