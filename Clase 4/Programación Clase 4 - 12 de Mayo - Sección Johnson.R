@@ -611,4 +611,7 @@ head(left_join(base_chile, base_argentina, by='title', suffix=c('.chile', '.arge
 
 #################### GRACIAS!!! BUENA CLASE :D
 
+### comentarios??? dejar acá en el link: https://www.menti.com/msx2bfp3m3
+
+
 ## ESPERO QUE ALCANCEMOS A VER TODO!!!
