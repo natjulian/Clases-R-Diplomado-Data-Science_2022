@@ -605,3 +605,8 @@ head(left_join(base_chile, base_argentina, by='title', suffix=c('.chile', '.arge
 
 # esta sí queda de tarea :) es ver los cambios con cada cruce, tal como hicimos en clases.
 
+
+
+#################### GRACIAS!!! BUENA CLASE :D
+
+## ESPERO QUE ALCANCEMOS A VER TODO!!!
