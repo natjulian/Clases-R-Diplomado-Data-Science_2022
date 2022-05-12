@@ -279,6 +279,8 @@ unique(viviendasRM$superficie_construida_m2)
 
 #reemplazar todos los ha por NULL y luego setear el formato a numerico
 
+
+
 ## ACÁ PASAMOS AL PAQUETE STRINGR
 
 
@@ -293,7 +295,7 @@ sum(str_detect(tolower(viviendasRM$superficie_construida_m2), 'ha'), na.rm=TRUE)
 #con str_remove() podemos eliminar estos pedazos 'ha' que aparecen:
 
 
-str_remove(tolower(viviendasRM$superficie_construida_m2), 'ha')
+str_remove_all(tolower(viviendasRM$superficie_construida_m2), 'ha')
 
 #ahora aplicamos formato numerico...
 
@@ -304,6 +306,11 @@ as.numeric(str_remove(tolower(viviendasRM$superficie_construida_m2), 'ha'))
 
 str_remove_all(tolower(viviendasRM$superficie_construida_m2), '[:alpha:]')
 
+
+#str_remove: aplica a la primera ocurrencia que encuentra dentro de los elementos
+
+#str_remove_all: aplica a todas las ocurrencias que encuentra dentro de los elementos
+
 ## aqui hay mas patrones: https://stringr.tidyverse.org/articles/regular-expressions.html
 
 
@@ -311,7 +318,7 @@ str_remove_all(tolower(viviendasRM$superficie_construida_m2), '[:alpha:]')
 #y ahora.... nos toca reemplazar esta variable!
 
 viviendasRM<-viviendasRM%>%
-                        mutate(superficie_construida_m2=as.numeric(str_remove(tolower(superficie_construida_m2),  '[:alpha:]')))
+                        mutate(superficie_construida_m2=as.numeric(str_remove_all(tolower(superficie_construida_m2),  '[:alpha:]')))
 
 #y ahora si podemos calcular la variable
 
@@ -355,8 +362,9 @@ str_replace(names(viviendasRM), '[a]$', 'num')
 str_replace(names(viviendasRM), 'vivienda$', 'num') 
 
 
-### y asi... muchos patrones! toca googlear para encontrar mas!
-
+### y asi... muchos patrones! toca googlear para encontrar mas! :D
+#Tendrán clases EXCLUSIVAS a manejo de texto y strings, análisis de sentimientos, así que no
+#profundizaré demasiado en esta parte.
 
 ########################## FECHAS
 
@@ -408,7 +416,7 @@ ggplot(data, aes(x=fechas, y=var)) +
   geom_point() + #le agrego los puntitos
   theme_minimal() #agrego un tema
   
-
+#tendrán clases EXCLUSIVAS a ggplot, por lo tanto, no quiero profundizar demasiaaado!
 #aqui mas ejemplos: https://r-graph-gallery.com/279-plotting-time-series-with-ggplot2.html
 
 
@@ -432,6 +440,8 @@ dim(nombresv2)
 #entre las dos bases
 
 inner_join(nombresv1, nombresv2) #reconoce automáticamente que debe cruzar por nombre :D
+
+?inner_join
 
 
 # LEFT JOIN: probablemente el más usado :) denominado cruce por la izquierda

@@ -3,7 +3,7 @@
     "path": "~/GitHub/Clases-R-Diplomado-Data-Science_2022/Clase 4/Programación Clase 4 - 12 de Mayo - Sección Johnson.R",
     "project_path": "Clase 4/Programación Clase 4 - 12 de Mayo - Sección Johnson.R",
     "type": "r_source",
-    "hash": "2756087560",
+    "hash": "1895643954",
     "contents": "",
     "dirty": false,
     "created": 1652389989497.0,
@@ -13,15 +13,15 @@
         "tempName": "Untitled1",
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "476,53",
-        "scrollLine": "475"
+        "cursorPosition": "454,0",
+        "scrollLine": "455"
     },
     "folds": "",
-    "lastKnownWriteTime": 1652390214,
+    "lastKnownWriteTime": 1652393040,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1652390214478,
+    "last_content_update": 1652393040654,
     "read_only": false,
     "read_only_alternatives": []
 }
