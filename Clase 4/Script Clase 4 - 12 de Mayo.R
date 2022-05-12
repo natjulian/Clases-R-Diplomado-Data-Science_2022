@@ -75,8 +75,38 @@ ggplot(data=viviendasRM, aes(x=n_estacionamientos))+
   ggtitle('Cantidad  de casas en venta en RM según \nNúmero de Estacionamiento')+ ## añadir un salto 
   labs(subtitle = 'Fuente: Google')
 
-  
+#podemos cambiar nombre de una variable
 
+viviendasRM<-viviendasRM%>%
+  rename(sitioweb=link)
+
+names(viviendasRM)  
+
+#podemos filtrar
+
+unique(viviendasRM$comuna)
+
+viviendasRM%>%
+  filter(comuna == 'San Joaquín'| comuna=='Maipú')
+
+
+tablafrq2<-viviendasRM%>% filter(comuna == 'San Joaquín'| comuna=='Maipú') %>%
+  group_by(n_estacionamientos)%>%count()
+
+maxconteo2<-max(tablafrq2$n)
+
+
+ggplot(data=viviendasRM%>%
+         filter(comuna == 'San Joaquín'| comuna=='Maipú'), aes(x=n_estacionamientos))+
+  geom_bar(fill='darkblue')+
+  theme_classic()+
+  ylab('Cantidad de Casas en venta en la Región Metropolitana')+
+  xlab('Número de estacionamientos')+
+  scale_x_continuous(breaks=seq(min(viviendasRM$n_estacionamientos, na.rm=TRUE),  
+                                max(viviendasRM$n_estacionamientos, na.rm=TRUE), by=1))+
+  scale_y_continuous(breaks=seq(0, maxconteo2, by=2))+
+  ggtitle('Cantidad  de casas en venta en RM según \nNúmero de Estacionamiento comunas San Joaquín y Maipú')+ ## añadir un salto 
+  labs(subtitle = 'Fuente: Google')
 
 
 
