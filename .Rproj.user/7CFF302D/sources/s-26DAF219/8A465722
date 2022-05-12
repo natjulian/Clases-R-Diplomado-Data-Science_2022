@@ -3,7 +3,7 @@
     "path": "~/GitHub/Clases-R-Diplomado-Data-Science_2022/Clase 4/Script Clase 4 - 12 de Mayo.R",
     "project_path": "Clase 4/Script Clase 4 - 12 de Mayo.R",
     "type": "r_source",
-    "hash": "197187116",
+    "hash": "248615629",
     "contents": "",
     "dirty": false,
     "created": 1652393458000.0,
@@ -13,15 +13,15 @@
         "tempName": "Untitled1",
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "41,28",
-        "scrollLine": "22"
+        "cursorPosition": "57,0",
+        "scrollLine": "37"
     },
     "folds": "",
-    "lastKnownWriteTime": 1652396586,
+    "lastKnownWriteTime": 1652396764,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1652396586070,
+    "last_content_update": 1652396764151,
     "read_only": false,
     "read_only_alternatives": []
 }

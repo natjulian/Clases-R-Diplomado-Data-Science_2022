@@ -40,3 +40,19 @@ viviendasRM<-viviendasRM%>%
 
 viviendasRM%>%
   select(n_estacionamientos)
+
+viviendasRM<-viviendasRM%>%
+                  mutate(n_estacionamientos=as.numeric(n_estacionamientos))
+
+viviendasRM%>%
+  select(n_estacionamientos)
+
+
+viviendasRM<-viviendasRM%>% 
+  mutate(n_estacionamientos=as.numeric(ifelse(tolower(n_estacionamientos)=='no',0, n_estacionamientos)))
+
+viviendasRM%>%
+  select(n_estacionamientos)%>%
+  summarise(mean(n_estacionamientos, na.rm=TRUE), min(n_estacionamientos, na.rm = TRUE))
+
+
