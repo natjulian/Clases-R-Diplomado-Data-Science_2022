@@ -186,3 +186,34 @@ viviendasRM<-viviendasRM%>%
 
 viviendasRM%>%
   select(sup_sin_con)
+
+
+viviendasRM$comuna[str_detect(viviendasRM$comuna, '[:alpha:]')]
+
+
+ejemplos<-c(123, 'holi', '12 q tal', 90)
+
+
+str_detect(ejemplos, '[:alpha:]')
+
+
+unique(ejemplos[str_detect(ejemplos, '[:alpha:]')])
+
+
+
+names(viviendasRM)
+
+str_replace_all(names(viviendasRM), 'n', 'num') #mal :(
+
+
+str_replace_all(names(viviendasRM), '^[n]', 'num')
+
+
+str_replace_all(names(viviendasRM), '[a]$', 'holi')
+
+
+
+############# Manejo de fechas
+
+
+
