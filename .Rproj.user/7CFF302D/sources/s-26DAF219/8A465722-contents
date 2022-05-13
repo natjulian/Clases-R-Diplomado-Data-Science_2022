@@ -291,3 +291,6 @@ right_join(nombresv1, nombresv2, by='nombre')
 #se queda con la misma dimensión de la base B(nombresv2)
 
 #full join
+
+full_join(nombresv1, nombresv2, by='nombre')
+
