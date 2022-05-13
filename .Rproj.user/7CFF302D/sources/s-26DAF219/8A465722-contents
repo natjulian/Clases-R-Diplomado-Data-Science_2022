@@ -216,4 +216,47 @@ str_replace_all(names(viviendasRM), '[a]$', 'holi')
 ############# Manejo de fechas
 
 
+as.Date("1982-01-13")
+as.Date("Jan-13-82", format = "%b-%d-%y")
+as.Date("13 January, 1982", format = "%d %B, %Y")
+
+library(lubridate)
+
+fecha<-c("2022-05-10", "2020-10-4", "2019-03-03")
+
+fecha<-as.Date(fecha)
+
+year(fecha)
+
+month(fecha)
+
+day(fecha)
+
+wday(fecha)
+
+
+fechas <- c("95-04-09", "87-12-03", "89-09-09")
+parse_date_time(fechas, "ymd")
+parse_date_time(fechas, "y m d")
+parse_date_time(fechas, "%y%m%d")
+
+
+fechas <- c("1995-04-09", "09091989", "03-04-1987")
+fechas <- parse_date_time(fechas, c("dmy", "ymd"))
+
+fechas
+
+var<-c(1,10,15)
+
+data<-data.frame(fechas, var)
+
+ggplot(data, aes(x=fechas, y=var))+
+  geom_line()+
+  geom_point()+
+  theme_minimal()
+
+
+#cruce de bases de datos
+
+
 
