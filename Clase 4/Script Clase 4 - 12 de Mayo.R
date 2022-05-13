@@ -258,5 +258,14 @@ ggplot(data, aes(x=fechas, y=var))+
 
 #cruce de bases de datos
 
+#highcharter
+
+load('Clase 4/Bases de datos/nombres1.RData')
+
+load('Clase 4/Bases de datos/nombres2.RData')
+
+
+
+
 
 
