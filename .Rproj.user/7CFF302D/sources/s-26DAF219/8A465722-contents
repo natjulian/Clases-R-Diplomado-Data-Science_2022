@@ -141,3 +141,48 @@ View(viviendasRM%>%
 
 ######## DINÁMICA DE GRUPOS: DE 20.15 A 20.30
 
+#1. Cambie el nombre de la variable Quien_Vende por Vendedor.
+#2. Ordene la base de datos según la cantidad de baños y luego entregue la información de las primeras diez viviendas.
+#3. Agrupe la base según la cantidad de estacionamientos e indique la cantidad de viviendas para cada grupo.
+#4. Calcule la media de los valores en UF y en CLP usando dplyr.
+#5. Genere una nueva variable que clasifique la cantidad de habitaciones de 2 o menos (pocas_hab), de 3 a 5 (varias_hab) y de 6 o más (muchas_hab)
+#6. Cree una nueva variable que contenga la superficie sin construir. ¿qué ocurre?
+
+
+viviendasRM<-viviendasRM%>%
+                mutate(sup_sin_con=total_superficie_m2-superficie_construida_m2)
+
+viviendasRM%>%
+  select(total_superficie_m2, superficie_construida_m2)
+
+unique(viviendasRM$superficie_construida_m2)
+
+str_detect(viviendasRM$superficie_construida_m2, 'ha')
+
+sum(str_detect(viviendasRM$superficie_construida_m2, 'ha'), na.rm=TRUE)
+
+########### como determinar si r encuentra texto en mi vector
+
+str_remove_all(viviendasRM$superficie_construida_m2, '[:alpha:]')
+
+str_remove_all(viviendasRM$comuna, '[:alpha:]')
+
+
+############# redefinir la variable superficie construida
+
+viviendasRM<-viviendasRM%>%
+                mutate(superficie_construida_m2=as.numeric(str_remove_all(viviendasRM$superficie_construida_m2, '[:alpha:]')))
+
+
+summary(viviendasRM)
+
+
+
+#creamos la variable pedida
+
+
+viviendasRM<-viviendasRM%>%
+  mutate(sup_sin_con=total_superficie_m2-superficie_construida_m2)
+
+viviendasRM%>%
+  select(sup_sin_con)
