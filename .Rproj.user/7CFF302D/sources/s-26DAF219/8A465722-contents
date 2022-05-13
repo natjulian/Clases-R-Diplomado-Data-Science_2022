@@ -128,6 +128,16 @@ viviendasRM<- viviendasRM%>%
                               TRUE ~ 'Otro caso'))
 
 
-viviendasRM%>%
+View(viviendasRM%>%
   group_by(comuna, cat_banios)%>%
-  count()
+  count())
+
+
+#################### ACTIVIDAD EN GRUPOS =D
+
+########################## SERÁN SEPARADOS EN GRUPOS, Y DEBEN PONERSE DE ACUERDO CON QUIÉN
+######## DE USTEDES VA A PROYECTAR SU R Y AVANZAR EN LAS 6 PREGUNTILLAS DE LA ACTIVIDAD
+######## TENDRÁN UNOS 15 MINUTOS PARA TERMINAR LA ACTIVIDAD Y SEGUIREMOS CON LA CLASE :D
+
+######## DINÁMICA DE GRUPOS: DE 20.15 A 20.30
+
