@@ -265,7 +265,29 @@ load('Clase 4/Bases de datos/nombres1.RData')
 load('Clase 4/Bases de datos/nombres2.RData')
 
 
+(nombresv1<-nombres1%>%slice(3:10))
+(nombresv2<-nombres2%>%slice(1:7))
 
 
+dim(nombresv1) #8
+dim(nombresv2) #7
 
+inner_join(nombresv1, nombresv2, by='nombre')
 
+#la dimension en un inner join será de a lo más la minima dimension entre A y B
+
+#left join
+
+left_join(nombresv1, nombresv2, by='nombre')
+
+#se queda con la misma dimension de la base A (nombresv1)
+
+#full join
+
+#right join
+
+right_join(nombresv1, nombresv2, by='nombre')
+
+#se queda con la misma dimensión de la base B(nombresv2)
+
+#full join
