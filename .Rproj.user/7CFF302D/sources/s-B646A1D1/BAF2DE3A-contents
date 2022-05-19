@@ -1,0 +1,371 @@
+#1. Cargue las bases de datos en R
+
+load(file = "Clase 4/Bases de datos/chart_chile.RData")
+load(file = "Clase 4/Bases de datos/chart_arg.RData")
+
+
+#2. Vea si es necesario limpiar los nombres de las variables.
+
+head(base_chile)
+
+names(base_chile)
+
+
+head(base_argentina)
+
+names(base_argentina)
+
+base_chile
+base_argentina
+
+#Se ven horribles :(
+
+base_chile <- base_chile %>% as_tibble()
+base_argentina <- base_argentina %>% as_tibble()
+
+
+#3. Reemplace los espacios en blanco de artist y title por guión bajo "_".
+
+base_chile<- base_chile%>%
+  mutate(artist=str_replace_all(artist, ' ', '_'),
+         title=str_replace_all(title, ' ', '_'))
+
+base_argentina<- base_argentina%>%
+  mutate(artist=str_replace_all(artist, ' ', '_'),
+         title=str_replace_all(title, ' ', '_'))
+
+#4. Pase la variable date a formato date.
+
+
+base_argentina<- base_argentina%>%
+  mutate(date=as.Date(date))
+
+base_chile<- base_chile%>%
+  mutate(date=as.Date(date))
+
+
+#5. Cree una nueva variable que contenga el día del año al que corresponde date, 
+#y otra que contenga el año del Ranking.
+
+
+base_argentina<- base_argentina%>%
+  mutate(dayofyear=yday(date), year=year(date))
+
+base_chile<- base_chile%>%
+  mutate(dayofyear=yday(date), year=year(date))
+
+lohead(base_argentina)
+head(base_chile)
+
+#6. Encuentre el día del año al que correspondió su cumpleaños el 2021.
+
+cumple <- as.Date("2021-04-25")
+yday(cumple)
+
+
+#7. Separe para cada base el TOP 50 del día de su cumpleaños del año 2021 
+#usando las variables creadas en 5.
+
+
+base_argentina<- base_argentina %>%
+  filter(dayofyear==yday(cumple), year==2021)
+
+head(base_argentina)
+
+base_chile<- base_chile %>%
+  filter(dayofyear==yday(cumple), year==2021)
+
+head(base_chile)
+
+#8. Si quisieramos realizar entrecruzamientos entre las dos bases creadas. ¿Qué variable nos serviría?
+
+
+#Depende...... de qué queremos?
+
+#Si queremos conocer el raking 1 en argentina y chile, cruzariamos por ranking:
+
+left_join(base_chile, base_argentina, by='rank', suffix=c('.chile', '.argentina'))
+
+### OTra forma, con dplyr:
+
+
+base_chile %>%
+  left_join(., base_argentina, by='rank', suffix=c('.chile', '.argentina'))
+
+head(left_join(base_chile, base_argentina, by='rank', suffix=c('.chile', '.argentina')))
+
+
+#Si queremos, saber el ranking que tuvo cada título en ambos paises, cruzamos por título
+
+left_join(base_chile, base_argentina, by='title', suffix=c('.chile', '.argentina'))
+
+head(left_join(base_chile, base_argentina, by='title', suffix=c('.chile', '.argentina')))
+
+
+#y así... dependerá de lo que queramos
+
+
+#9. Con las dos bases y la variable detectada, genere los entrecruzamientos vistos en clases y analice:
+
+#inner join.
+#left join.
+#right join.
+#full join.
+
+
+
+# mismo que hicimos pero cambiando left por full y así
+
+
+## ANTES DEL TALLER 
+
+
+#mostrar:
+
+
+# como quitar una columna con  -1 en select
+
+# funcion substr() 
+
+# operador |
+
+# summarise con n()
+
+
+
+################# TALLER
+
+
+library(tidyverse)
+library(janitor)
+library(lubridate)
+
+
+
+# 1. Remueva las columnas y filas que solo contengan datos perdidos. 
+#Y en el caso de la base detalle_tipologia elimine la primera columna que solo sirve de id.
+
+#Hint: Puede servirle remove_empty de la librería janitor.
+
+SEA <- read_csv("Clase 5 Final/SEA_projects.csv")
+tipologia <- read_csv("Clase 5 Final/detalle_tipologia.csv")
+
+
+SEA <- SEA %>% 
+  remove_empty(which = c("rows","cols"))
+
+tipologia <- tipologia %>% 
+  select(-...1)
+
+
+
+# 2. Seleccionar las siguientes variables renombrándolas como se señala
+#(excluya el resto de variables):
+
+#name: proyecto
+#type: tipo
+#region: region
+#owner: empresa
+#typology: cod_tipologia
+#investment: inversion
+#entry_date: fecha_entrada
+#state: estado
+#qualification_date: fecha_calificacion
+#Hint: La función select de la librería dplyr le permite renombrar las variables al seleccionarlas.
+
+
+SEA <- SEA %>% 
+  select(proyecto  = name,
+         tipo      = type,
+         region    = region,
+         empresa   = owner,
+         estado    = state,
+         inversion = investment,
+         cod_tipologia = typology,
+         fecha_entrada = entry_date,
+         fecha_calificacion = qualification_date)
+
+
+
+# 3. Confirme que todas las variables están en el formato correcto.
+
+#Hint: Revise los distintos formatos ocupando funciones como str o glimpse. 
+#Tenga especial cuidado con los distintos formatos que puede contener 
+#la variable fecha. Vea consistencia en las regiones.
+
+str(SEA)
+
+unique(SEA$fecha_calificacion)
+
+#anio-mes-dia
+
+View(SEA)
+
+substr(SEA$fecha_entrada, 0,4)  #Acá tienen que descubrir como revisarlo, si solo mirando
+#o pensar en una manera mas inteligente de verlo
+
+
+SEA <- SEA %>% 
+  mutate(fecha_entrada = parse_date_time(fecha_entrada, c("dmy", "ymd")))
+
+unique(SEA$region)
+
+SEA2 <- SEA %>% 
+  mutate(region = case_when(region == "5" ~ "Quinta", TRUE ~ region))
+
+#Aqui tambien podrian haber usado replace :)
+
+# 4.  Genere una nueva variable a partir de estado que se llame estado_cat y 
+#que categorice según la siguiente tabla:
+
+
+#En admision ó En calificación ==> En proceso
+# Aprobado ==> Aprobado
+# Rechazado ==> Rechazado
+# Abandonado ó Caducado ó Desistido ó Ingresados ó No Admitido a Tramitación ó 
+# No calificado ó Revocado => Otro
+
+
+SEA <- SEA %>% 
+  mutate(estado_cat = case_when(estado == "En Admisión" | estado == "En Calificación" ~ "En proceso",
+                                estado == "Aprobado" ~ "Aprobado",
+                                estado == "Rechazado" ~ "Rechazado",
+                                TRUE ~ "Otro"))
+
+
+
+# 5. ¿En qué estado se encuentran los proyectos ingresados el año 2015?. 
+#Realice para cada año de entrada el mismo proceso.
+
+#Hint: group_by puede ser usado para agrupar por categorías.
+
+
+SEA %>% 
+filter(year(fecha_entrada) == 2015) %>% 
+  group_by(estado_cat) %>% 
+  count()
+
+
+#Si queremos saberlo para cada año...
+
+
+SEA %>% 
+  group_by( estado_cat, year(fecha_entrada)) %>% 
+  count()
+
+
+
+#6. Realice un full join entre SEA_projects.csv y detalle_tipologia.csv y 
+#corrobore que está bien realizado.
+
+#Hint: Explore el argumento by de la función full_join.
+
+base <- full_join(SEA, tipologia, by =c("cod_tipologia" = "cod_tipo"))
+
+#o tambien
+
+base<- SEA %>%
+        full_join(., tipologia, by=c("cod_tipologia"="cod_tipo"))
+
+summary(base)
+
+#Revisar las dimensiones obtenidas
+
+
+nrow(SEA); nrow(tipologia)
+
+nrow(base)
+
+#Que significa que hayan algunos casos nulos?
+
+# a) si hay campos de SEA nulos significa que hubieron tipologias que no tuvieron 
+#proyectos
+
+# b) si hay campos de tipologia nulos significa que hay proyectos con tipologias que
+#no están en el diccionario de tipologias (seria raro, revisar estos casos)
+
+
+
+#7. Obtenga un resumen de la base de datos obtenida en el paso 6, 
+#¿En promedio cuantos millones de dólares se invierten en los proyectos de Chile?
+
+#Hint: Función summary.
+
+summary(base)
+
+
+
+#8. Realice un análisis de los NA de la variable fecha_calificacion 
+#segregando por los distintos estados de los proyectos. 
+#¿A qué se deben estos resultados? Comente.
+
+#Hint: Puede servirle group_by.
+
+base %>% 
+  select(fecha_calificacion) %>% 
+  summary()
+
+base %>% 
+  filter(is.na(fecha_calificacion)) %>% 
+  group_by(estado_cat) %>% 
+  count()
+
+# Se puede apreciar que la mayoría de los NA’s se deben a que no están listos
+#los proyectos y, por lo tanto, no hay fecha de calificación.
+
+#9. Calcule el número de proyectos de cada empresa y el monto total invertido. 
+#Luego ordene según este monto, de mayor a menor.
+
+#Hint: Las funciones group_by, count de la librería dplyr puede servirles.
+
+
+base %>% 
+  group_by(empresa) %>% 
+  summarise(Mto_invertido = sum(inversion),
+            Proyectos = length(proyecto)) %>% 
+  arrange(-Mto_invertido)
+
+# o tambien
+
+
+base %>% 
+  group_by(empresa) %>% 
+  summarise(Mto_invertido = sum(inversion),
+            Proyectos = n()) %>% 
+  arrange(-Mto_invertido)
+
+
+#10. Visualización gráfica:
+
+#a. Filtre los proyectos con fecha de entrada desde el 2015, 
+#luego genere un gráfico de boxplot de las inversiones. Interprete lo obtenido.
+
+base %>% 
+  filter(fecha_entrada > "2015-01-01") %>% 
+  ggplot(aes(x = inversion)) +
+  geom_boxplot()
+
+# o tambien...
+
+
+ggplot(base %>% 
+         filter(fecha_entrada > "2015-01-01"), aes(x=inversion))+
+  geom_boxplot()
+
+
+#b. Repita lo anterior, pero esta vez filtre también las inversiones 
+#con menos de 30 millones de dólares estadounidenses.
+
+base %>% 
+  filter(fecha_entrada > "2015-01-01",
+         inversion < 30) %>% 
+  ggplot(aes(x = inversion)) +
+  geom_boxplot()
+
+
+# o tambien...
+
+ggplot(base %>% 
+         filter(fecha_entrada > "2015-01-01",
+                inversion < 30), aes(x = inversion)) +
+  geom_boxplot()

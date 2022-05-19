@@ -1,0 +1,330 @@
+---
+title: "Herramientas Computacionales, Algoritmos y Machine Learning (HCML)"
+subtitle: "Taller Análisis de Datos"
+author: "<span style='font-size: 30px'>Stephanie Orellana - Camila Paredes - Natalie Julian - Elías Alvear</style>"
+institute: "Pontificia Universidad Católica de Chile"
+date: ""
+output:
+  xaringan::moon_reader:
+    css:  
+      - xaringan-themer.css
+      - estilos.css
+    lib_dir: libs
+    seal: false
+    nature:
+      titleSlideClass: "inverse"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: "16:12" 
+---
+
+class: left, bottom
+background-image: url(media/logo.png)
+background-position: 95% 7%
+background-size: 40%
+
+# `r rmarkdown::metadata$title`
+----
+## `r rmarkdown::metadata$subtitle`
+### `r rmarkdown::metadata$author`
+### `r rmarkdown::metadata$date`
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_mono_light(base_color = "#23395b",
+#style_duo(
+ # primary_color = "#576675",
+ # secondary_color="#f5f5dc", # FF7373
+  header_font_google = google_font("Fjalla One"),
+  text_font_google   = google_font("Roboto"),
+  code_font_google   = google_font("Fira Mono")
+)
+
+
+```
+
+---
+
+# Contexto
+
+<div style="text-align: justify">
+
+El Servicio de Evaluación Ambiental SEA es la institución encargada de autorizar la operación de proyectos en Chile, que podrían tener impactos potenciales en la salud de la población o el medio ambiente. 
+
+Cuando una empresa quiere llevar a cabo un proyecto de una magnitud relativamente grande, debe presentar un requisito a la SEA para evaluar el correcto y seguro funcionamiento de este proyecto. Si un proyecto es determinado como dañino para el medio ambiente o la población, la SEA puede denegar el permiso ambiental y, por lo tanto, la puesta en marcha de un proyecto.
+
+Desde el inicio de la SEA en 1997, más de 25 mil proyectos han sido evaluados por esta institución, por lo que la base de datos de la SEA contiene una gran cantidad de registros, que pueden ser útiles para analizar.
+
+
+Los datos del archivo “SEA_projects.csv” fueron extraídos el 15 de marzo de 2021 desde la página oficial del SEA, sabiendo que esta información es pública.
+
+<div>
+
+---
+
+**Descripción de las variables**
+
+<table border="1" width="100%">
+	<col style="width:20%">
+	<col style="width:80%">
+	<thead>
+	<tr>
+		<th>Variable</th>
+		<th>Descripción</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<th>name</th>
+		<td>Nombre del proyecto</td>
+	</tr>
+	<tr>
+		<th>type</th>
+		<td>Tipo de proceso de evaluación. Los proyectos pueden presentar una declaración de impacto ambiental (DIA) o un estudio de impacto ambiental (EIA). Esto depende de la magnitud de los impactos potenciales sobre el medio ambiente o la salud de la población</td>
+	</tr>
+	<tr>
+		<th>region</th>
+		<td>Región donde se está llevando a cabo el proyecto.</td>
+	</tr>
+	<tr>
+		<th>owner</th>
+		<td>Empresa dueña del proyecto.</td>
+	</tr>
+	<tr>
+		<th>typology</th>
+		<td>Código de tipología de proyecto en función de su sector.</td>
+	</tr>
+	<tr>
+		<th>investment</th>
+		<td>Monto de la inversión en millones de dólares estadounidenses.</td>
+	</tr>
+	<tr>
+		<th>entry_date</th>
+		<td>Fecha en la que el proyecto ingresa al proceso SEA.</td>
+	</tr>
+	<tr>
+		<th>state</th>
+		<td>El estado actual de la evaluación del proyecto a fecha de revisión.</td>
+	</tr>
+	<tr>
+		<th>qualification_date</th>
+		<td>Fecha en la que se emitió la resolución final de la SEA. Esta resolución considera las opciones aprobadas o denegadas. No todos los proyectos están calificados debido a que varios se retiran antes.</td>
+	</tr>
+	</tbody>
+</table>
+
+
+---
+
+
+**Descripción de las variables**
+
+<table border="1" width="100%">
+	<col style="width:20%">
+	<col style="width:80%">
+	<thead>
+	<tr>
+		<th>Variable</th>
+		<th>Descripción</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<th>id_project</th>
+		<td>id de cada proyecto en SEA.</td>
+	</tr>
+	<tr>
+		<th>latitude</th>
+		<td>Latitud en grados usando Datum WGS84.</td>
+	</tr>
+	<tr>
+		<th>longitude</th>
+		<td>Longitud en grados usando Datum WGS84.</td>
+	</tr>
+	<tr>
+		<th>n_docs</th>
+		<td>Número de documentos disponibles a través del proceso de evaluación.</td>
+	</tr>
+	<tr>
+		<th>n_addendum</th>
+		<td>Número de apéndices realizados en el proceso de evaluación de un proyecto.</td>
+	</tr>
+	<tr>
+		<th>n_participatory</th>
+		<td>Número de actividades participativas realizadas en el proceso de evaluación de un proyecto.</td>
+	</tr>
+	<tr>
+		<th>description</th>
+		<td>Descripción general del proyecto.</td>
+	</tr>
+	<tr>
+		<th>main_url</th>
+		<td>URL del proceso de evaluación de un proyecto.</td>
+	</tr>
+
+	</tbody>
+</table>
+
+---
+
+## Contexto
+
+El archivo "detalle_tipologia.csv" contiene información de la descripción de los 86 códigos de tipología.
+
+**Descripción de las variables**
+
+<table border="1" width="100%">
+	<col style="width:20%">
+	<col style="width:80%">
+	<thead>
+	<tr>
+		<th>Variable</th>
+		<th>Descripción</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<th>cod_tipologia</th>
+		<td>Código de la tipología.</td>
+	</tr>
+		<tr>
+		<th>tipologia</th>
+		<td>Descripción de la tipología.</td>
+	</tr>
+	</tbody>
+</table>
+
+---
+
+### Actividad
+
+<b>1.</b> Remueva las columnas y filas que solo contengan datos perdidos. Y en el caso de la base <code>datella_tipologia</code> elimine <code>X1</code> que solo sirve de id.
+
+**Hint:** Puede servirle <code>remove_empty</code> de la librería <code>janitor</code>.
+
+<b>2.</b> Seleccionar las siguientes variables renombrándolas como se señala (excluya el resto de variables):
+
+* name: proyecto
+* type: tipo
+* region: region
+* owner: empresa
+* typology: cod_tipologia
+* investment: inversion
+* entry_date: fecha_entrada
+* state: estado
+* qualification_date: fecha_calificacion
+
+**Hint:** La función <code>select</code> de la librería <code>dplyr</code> le permite renombrar las variables al seleccionarlas.
+
+---
+
+### Actividad
+
+<b>3.</b> Confirme que todas las variables están en el formato correcto.
+
+**Hint**: Revise los distintos formatos ocupando funciones como <code>str</code> o <code>glimpse</code>. 
+Tenga especial cuidado con los distintos formatos que puede contener la variable fecha. Vea consistencia en las regiones.
+
+<b>4.</b> Genere una nueva variable a partir de <code>estado</code> que se llame <code>estado_cat</code> y 
+que categorice según la siguiente tabla:
+
+
+<table border="1" width="100%">
+  <tr>
+    <th>Nueva Categoría</th>
+    <th>Antigua Categoría</th>
+  </tr>
+  <tr>
+    <td rowspan="2">En proceso</td>
+    <td>En admisión</td>
+  </tr>
+  <tr>
+    <td>En calificación</td>
+  </tr>
+  <tr>
+    <td>Aprobado</td>
+    <td>Aprobado</td>
+  </tr>
+  <tr>
+    <td>Rechazado</td>
+    <td>Rechazado</td>
+  </tr>
+</table>
+  
+
+---
+
+### Actividad
+
+<table border="1" width="100%">
+  <tr>
+    <th>Nueva Categoría</th>
+    <th>Antigua Categoría</th>
+  </tr>
+  <tr>
+    <td rowspan="7">Otro</td>
+    <td>Abandonado</td>
+  </tr>
+  <tr>
+    <td>Caducado</td>
+  </tr>
+  <tr>
+    <td>Desistido</td>
+  </tr>
+  <tr>
+    <td>Ingresados Art.94 RSEIA</td>
+  </tr>
+  <tr>
+    <td>No Admitido a Tramitación</td>
+  </tr>
+  <tr>
+    <td>No calificado</td>
+  </tr>
+  <tr>
+    <td>Revocado</td>
+  </tr>
+</table>
+
+**Hint:** <code>case_when</code> podría servirle.
+
+<b>5.</b> ¿En qué estado se encuentran los proyectos ingresados el año 2015?. 
+Realice para cada año de entrada el mismo proceso.
+
+**Hint:** <code>group_by</code> puede ser usado para agrupar por categorías.
+  
+---
+
+### Actividad
+
+<b>6.</b> Realice un full join entre <code>SEA_projects.csv</code> y <code>detalle_tipologia.csv</code> y corrobore que 
+está bien realizado.
+
+**Hint:** Explore el argumento <code>by</code> de la función <code>full_join</code>.
+
+<b>7.</b> Obtenga un resumen de la base de datos obtenida en el paso 6, ¿En promedio cuantos millones de dólares se invierten en los proyectos de Chile?
+
+**Hint:** Función <code>summary</code>.
+
+<b>8.</b> Realice un análisis de los NA de la variable <code>fecha_calificacion</code> segregando por los distintos estados de los proyectos. ¿A qué se deben estos resultados? Comente.
+
+**Hint:** Puede servirle <code>group_by</code>.
+
+<b>9.</b> Calcule el número de proyectos de cada empresa y el monto total invertido. 
+Luego ordene según este monto, de mayor a menor.
+
+**Hint:** Las funciones <code>group_by</code>, <code>count</code> de la 
+librería <code>dplyr</code> puede servirles.
+
+---
+
+### Actividad
+
+<b>10.</b> Visualización gráfica:
+
+a. Filtre los proyectos con fecha de entrada desde el 2015, luego generé un gráfico de boxplot de las inversiones. Interprete lo obtenido.
+
+b. Repita lo anterior, pero esta vez filtre también las inversiones con menos de 30 
+millones de dólares estadounidenses.
+    
+    

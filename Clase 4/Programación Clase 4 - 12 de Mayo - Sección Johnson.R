@@ -535,12 +535,12 @@ names(base_argentina)
 #3. Reemplace los espacios en blanco de artist y title por guión bajo "_".
 
 base_chile<- base_chile%>%
-                      mutate(artist=str_replace(artist, ' ', '_'),
-                             title=str_replace(title, ' ', '_'))
+                      mutate(artist=str_replace_all(artist, ' ', '_'),
+                             title=str_replace_all(title, ' ', '_'))
 
 base_argentina<- base_argentina%>%
-  mutate(artist=str_replace(artist, ' ', '_'),
-         title=str_replace(title, ' ', '_'))
+  mutate(artist=str_replace_all(artist, ' ', '_'),
+         title=str_replace_all(title, ' ', '_'))
 
 #4. Pase la variable date a formato date.
 
