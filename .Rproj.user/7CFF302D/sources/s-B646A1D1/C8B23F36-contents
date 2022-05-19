@@ -91,9 +91,47 @@ base_chile$artist <- str_replace_all(base_chile$artist, "[:space:]", "_")
 str_replace_all(class(base_argentina['artist']))
 
 
-
-
 # 4) Pase la variable date a formato date.
+
+str(base_argentina)
+
+str(base_chile)
+
+
+View(base_argentina)
+
+
+head(base_argentina$date, 10)
+
+tail(base_argentina$date, 10)
+
+head(base_chile$date, 10)
+
+tail(base_chile$date, 10)
+
+unique(base_chile$date)
+
+#Forma 1:
+
+base_argentina$date <- as.Date(base_argentina$date)
+
+str(base_argentina)
+  
+base_chile$date <- as.Date(base_chile$date)
+
+
+#Forma 2:
+
+base_argentina <- base_argentina %>% 
+  mutate(date = as.Date(date, format("%y-%m-%d"))) 
+
+str(base_argentina)
+
+base_chile <- base_chile %>% 
+  mutate(date = as.Date(date, format("%y-%m-%d")))
+
+str(base_chile)
+
 
 # 5) Cree una nueva variable que contenga el día del año al que corresponde date,
 #y otra que contenga el año del Ranking.
