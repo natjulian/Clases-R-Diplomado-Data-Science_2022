@@ -19,14 +19,79 @@ library(ggplot2)
 
 # 1) Cargue las bases de datos en R.
 
-load(file = "Clase 4/Bases de datos/chart_chile.RData")
-load(file = "Clase 4/Bases de datos/chart_arg.RData")
+load("Clase 4/Bases de datos/chart_chile.RData")
+load("Clase 4/Bases de datos/chart_arg.RData")
 
+View(base_argentina)
+
+View(base_chile)
 
 
 # 2) Vea si es necesario limpiar los nombres de las variables.
 
+
+names(base_argentina)
+
+names(base_chile)
+
+base_argentina
+
+base_chile
+
+
+base_chile<-base_chile %>% as_tibble()
+
+base_chile
+
+str(base_chile)
+
+glimpse(base_chile)
+
+base_argentina<-base_argentina %>% as_tibble() 
+
+
+
 # 3) Reemplace los espacios en blanco de artist y title por guión bajo "_".
+
+base_chile <- base_chile %>% 
+  mutate(artist=str_replace_all(artist, ' ', '_'),
+         title=str_replace_all(title, ' ', '_'))
+
+
+sum(str_detect(base_chile$title, ' '))
+sum(str_detect(base_chile$artist, ' '))
+
+base_chile %>%view()
+
+base_argentina <- base_argentina %>% 
+  mutate(artist=str_replace_all(artist, ' ', '_'),
+         title=str_replace_all(title, ' ', '_'))
+
+sum(str_detect(base_argentina$title, ' '))
+
+sum(str_detect(base_argentina$artist, ' '))
+
+sum(str_detect(base_argentina$title, ' ')|str_detect(base_argentina$artist, ' '))
+
+
+##### FORMA 2) PERO INEFICIENTE :(
+
+base_chile$title <- base_chile$title%>% 
+  janitor::make_clean_names()
+
+
+#### FORMA 3)
+
+base_argentina$artist <- str_replace_all(base_argentina$artist, "[:space:]", "_")
+base_chile$artist <- str_replace_all(base_chile$artist, "[:space:]", "_")
+
+
+## en str_replace_all solo funcionan vectores ;C
+
+str_replace_all(class(base_argentina['artist']))
+
+
+
 
 # 4) Pase la variable date a formato date.
 
