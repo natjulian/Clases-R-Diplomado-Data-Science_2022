@@ -123,20 +123,64 @@ base_chile$date <- as.Date(base_chile$date)
 #Forma 2:
 
 base_argentina <- base_argentina %>% 
-  mutate(date = as.Date(date, format("%y-%m-%d"))) 
+  mutate(date = as.Date(date, format("%Y-%m-%d"))) 
 
 str(base_argentina)
 
 base_chile <- base_chile %>% 
-  mutate(date = as.Date(date, format("%y-%m-%d")))
+  mutate(date = as.Date(date, format("%Y-%m-%d")))
 
 str(base_chile)
+
+
+# tambien se puede usar parse date time :) 
+# parse_date_time(fechas, "ymd")
+
+
+numero<-'1,3354'
+
+numero<-str_replace(numero, ',', '.')
+
+numero
+
+numero<-as.numeric(numero)
+
+numero
+
+class(numero)
+
+#dplyr
+numero<-numero %>%
+            mutate(var=as.numeric(str_replace(var, ",", ".")))
+
 
 
 # 5) Cree una nueva variable que contenga el día del año al que corresponde date,
 #y otra que contenga el año del Ranking.
 
+base_chile <- base_chile %>% 
+  mutate(dia_anio=yday(date), anio=year(date))
+
+base_argentina <- base_argentina %>% 
+  mutate(dia_anio=yday(date), anio=year(date))
+
+#forma 2
+
+(base_chile2 <- base_chile %>%
+    mutate(dia=day(date), anio=year(date)) %>%
+    select('date', 'dia', 'anio') %>% 
+    group_by(date,dia))
+
+
 # 6) Encuentre el día del año al que correspondió su cumpleaños el 2021.
+
+cumple<-as.Date("2021-04-25")
+
+yday(cumple)
+year(cumple)
+day(cumple)
+month(cumple)
+
 
 # 7) Separe para cada base el TOP 50 del día de su cumpleaños del año 2021 
 #usando las variables creadas en 5.
