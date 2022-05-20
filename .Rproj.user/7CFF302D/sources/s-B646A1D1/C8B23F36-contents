@@ -180,10 +180,29 @@ yday(cumple)
 year(cumple)
 day(cumple)
 month(cumple)
+wday(cumple)
 
+diassemanas<-c('Domingo','Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado')
+
+diassemanas[wday(cumple)]
 
 # 7) Separe para cada base el TOP 50 del día de su cumpleaños del año 2021 
 #usando las variables creadas en 5.
+
+base_argentina_c<-base_argentina %>%
+                  filter(dia_anio==yday(cumple), anio==year(cumple)) 
+
+
+base_chile_c<-base_chile %>%
+  filter(dia_anio==yday(cumple), anio==year(cumple))
+
+nrow(base_argentina_c); nrow(base_argentina_c)
+
+
+base_argentin %>%
+  arrange(rank) %>% 
+  slice(1:50) %>%
+  select(title)
 
 # 8) Si quisieramos realizar entrecruzamientos entre las dos bases 
 #creadas. ¿Qué variable nos serviría?
