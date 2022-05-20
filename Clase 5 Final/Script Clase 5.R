@@ -207,6 +207,28 @@ base_argentin %>%
 # 8) Si quisieramos realizar entrecruzamientos entre las dos bases 
 #creadas. ¿Qué variable nos serviría?
 
+base_argentina_c
+
+base_chile_c
+
+
+#ranking: para saber el ranking n-n en chile y argentina y compararlos :)
+
+
+View(full_join(base_argentina_c, base_chile_c, by='rank', suffix=c('.argentina', '.chile')))
+
+
+cruce<-full_join(base_argentina_c, base_chile_c, by=c('rank','date'), suffix=c('.argentina', '.chile')) %>%
+          select(rank, date.argentina, title.argentina, artist.argentina, title.chile, artist.chile)
+
+View(cruce)
+
+
+#########OTRA OPCION....
+
+
+cruce <-
+
 # 9) 9. Con las dos bases y la variable detectada, genere los 
 #entrecruzamientos vistos en clases y analice:
 

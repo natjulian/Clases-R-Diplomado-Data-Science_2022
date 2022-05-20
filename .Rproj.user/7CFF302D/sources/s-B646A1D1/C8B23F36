@@ -3,7 +3,7 @@
     "path": "~/GitHub/Clases-R-Diplomado-Data-Science_2022/Clase 5 Final/Script Clase 5.R",
     "project_path": "Clase 5 Final/Script Clase 5.R",
     "type": "r_source",
-    "hash": "2560064189",
+    "hash": "2702346337",
     "contents": "",
     "dirty": false,
     "created": 1652988922066.0,
@@ -13,15 +13,15 @@
         "tempName": "Untitled1",
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "200,0",
-        "scrollLine": "190"
+        "cursorPosition": "229,8",
+        "scrollLine": "213"
     },
     "folds": "",
-    "lastKnownWriteTime": 1653005424,
+    "lastKnownWriteTime": 1653007260,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1653005424750,
+    "last_content_update": 1653007260390,
     "read_only": false,
     "read_only_alternatives": []
 }
